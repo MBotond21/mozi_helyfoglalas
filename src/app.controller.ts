@@ -19,7 +19,10 @@ export class AppController {
   @Render('dataForm')
   getDataForm(){
     return {
-      data: {},
+      data: {
+        date: new Date().toISOString().slice(0, 16)
+      },
+      dateNow: new Date().toISOString().slice(0, 16),
       errors: []
     }
   }
@@ -47,6 +50,7 @@ export class AppController {
     if(errors.length > 0){
       response.render('dataForm', {
         data: dataFormDto,
+        dateNow: new Date().toISOString().slice(0, 16),
         errors
       });
       return;
